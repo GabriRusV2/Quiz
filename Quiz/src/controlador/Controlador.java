@@ -1,8 +1,5 @@
 package controlador;
-//jkaKJDSJKDJKAKJAJHKSALHDLLKD
-//sdfhkffflkekfwnfnlk
 
-//kasfjkfsj
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
