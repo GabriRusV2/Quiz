@@ -1,5 +1,5 @@
 package mainApp;
-
+//Me gusta el sexo
 import controlador.Controlador;
 import modelo.ModeloDatos;
 import java.awt.EventQueue;
