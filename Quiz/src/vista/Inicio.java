@@ -13,7 +13,6 @@ public class Inicio extends JFrame implements Vista {
     private ModeloDatos miModelo;
 
     // Colores y Constantes
-    private static final Color COLOR_FONDO = new Color(240, 240, 240);
     private static final Color COLOR_PRIMARIO = new Color(59, 89, 182);
     private static final Color COLOR_TEXTO_BOTON = Color.WHITE;
     private static final Font FUENTE_TITULO = new Font("Segoe UI", Font.BOLD, 36);
@@ -33,12 +32,21 @@ public class Inicio extends JFrame implements Vista {
         setBounds(100, 100, 550, 400);
         setLocationRelativeTo(null);
 
-        getContentPane().setBackground(COLOR_FONDO);
-        getContentPane().setLayout(new BorderLayout());
+        // ✅ Panel con imagen de fondo
+        Image imagenFondo = new ImageIcon(getClass().getResource("/img/FONDO2.jpg")).getImage(); // usa PNG o JPG
+        JPanel panelFondo = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
+            }
+        };
+        setContentPane(panelFondo);
 
         // Panel contenedor central
         JPanel panelContenedor = new JPanel();
-        panelContenedor.setBackground(Color.WHITE);
+        panelContenedor.setBounds(0, 0, 536, 363);
+        panelContenedor.setBackground(new Color(255, 255, 255, 220)); // Blanco semitransparente
         panelContenedor.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(Color.GRAY.brighter(), 1, true),
                 new EmptyBorder(30, 30, 30, 30)
@@ -74,12 +82,13 @@ public class Inicio extends JFrame implements Vista {
         btnRegistro.addActionListener(e -> {
             if (controlador != null) controlador.mostrarVentanaRegistro();
         });
+        panelFondo.setLayout(null);
         panelBotones.add(btnRegistro);
 
         panelContenedor.add(panelBotones);
 
-        // Añadir el panel contenedor a la ventana
-        getContentPane().add(panelContenedor, BorderLayout.CENTER);
+        // Añadir el panel contenedor al fondo
+        panelFondo.add(panelContenedor);
     }
 
     /**
